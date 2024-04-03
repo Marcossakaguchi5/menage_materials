@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Materiais</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+
+    <h1>Lista de Materiais</h1>
+    <table>
+        <thead>
+            <tr>
+               
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for material in materiais %}
+            <tr>
+                <td>{{ material.descricao }}</td>
+                <td>{{ material.quantidade }}</td>
+                <td>{{ material.preco }}</td>
+                <td>
+                    <a class="ed"  href="{% url 'edita_material' material.pk %}">Editar</a>
+                    <a class="de" href="{% url 'deleta_material' material.pk %}">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="bu" href="{% url 'adiciona_material' %}">Adicionar Novo Material</a>
+    </div>
+</body>
+
+</html>
